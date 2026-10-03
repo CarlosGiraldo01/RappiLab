@@ -1,0 +1,77 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-primary: #ff5a1f;
+  --color-primary-dark: #e2490f;
+  --color-primary-soft: #ffe8db;
+
+  --color-ink: #1c1917;
+  --color-ink-soft: #78716c;
+
+  --color-surface: #ffffff;
+  --color-surface-muted: #f5f2ed;
+  --color-border: #f4d9c2;
+
+  --color-success: #178a4d;
+  --color-success-soft: #e1f5e8;
+  --color-pending-soft: #f1eeea;
+
+  --font-display: var(--font-fredoka);
+  --font-sans: var(--font-inter);
+}
+
+body {
+  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+}
+
+
+.scroll-row {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-border) transparent;
+}
+.scroll-row::-webkit-scrollbar {
+  height: 6px;
+}
+.scroll-row::-webkit-scrollbar-track {
+  background: transparent;
+}
+.scroll-row::-webkit-scrollbar-thumb {
+  background-color: var(--color-border);
+  border-radius: 999px;
+}
+
+@layer components {
+  .surface-card {
+    @apply bg-surface border border-border rounded-2xl;
+  }
+
+  .scroll-row {
+    @apply flex gap-4 overflow-x-auto pb-3;
+    scroll-snap-type: x mandatory;
+  }
+  .scroll-row > * {
+    scroll-snap-align: start;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center rounded-full font-medium text-sm transition-colors disabled:opacity-50 disabled:cursor-not-allowed bg-primary text-white px-5 py-2.5 hover:bg-primary-dark;
+  }
+  .btn-secondary {
+    @apply inline-flex items-center justify-center rounded-full font-medium text-sm transition-colors disabled:opacity-50 disabled:cursor-not-allowed bg-surface text-ink border border-border px-5 py-2.5 hover:bg-surface-muted;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center justify-center rounded-full font-medium text-sm transition-colors disabled:opacity-50 disabled:cursor-not-allowed text-ink-soft px-3 py-2 hover:text-ink;
+  }
+
+  .stepper-btn {
+    @apply flex h-6 w-6 items-center justify-center rounded-full border border-primary text-primary text-sm leading-none hover:bg-primary-soft transition-colors disabled:opacity-40 disabled:cursor-not-allowed;
+  }
+
+  .input-field {
+    @apply w-full rounded-xl border border-border bg-surface px-4 py-2.5 text-ink placeholder:text-ink-soft focus:outline-none focus:ring-2 focus:ring-primary-soft focus:border-primary;
+  }
+
+  .badge {
+    @apply inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-medium;
+  }
+}
